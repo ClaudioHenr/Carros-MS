@@ -3,15 +3,18 @@ package br.net.claudio.carrosws.models;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name="tb_carros")
+@SequenceGenerator(name = "carro_seq", sequenceName = "tb_carros_seq", allocationSize = 1)
 public class Carro {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "carro_seq")
     @Column(name="id")
     private Long id;
     @Column(name="brand")
