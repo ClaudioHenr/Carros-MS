@@ -32,6 +32,12 @@ public class Carro {
         this.year = year;
     }
 
+    public Carro(CarroDTO carroDTO) {
+        this.brand = carroDTO.getBrand();
+        this.model = carroDTO.getModel();
+        this.year = carroDTO.getYear();
+    }
+
     public Long getId() {
         return id;
     }

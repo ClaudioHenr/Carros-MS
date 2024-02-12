@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 import br.net.claudio.carrosws.models.Carro;
 import br.net.claudio.carrosws.models.CarroDTO;
 import br.net.claudio.carrosws.repository.CarroRepository;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @CrossOrigin
 @RestController
@@ -29,4 +32,12 @@ public class CarroREST {
         return listaDTO;
     };
 
+    @PostMapping("/carros")
+    public Carro inserirCarro(@RequestBody CarroDTO carroDTO) {
+        Carro carro = new Carro(carroDTO);
+        repo.save(carro);
+        // Procurar carro salvo no BD e retornar       
+        return repo.findByBrand(carro.getBrand());
+    }
+    
 }
